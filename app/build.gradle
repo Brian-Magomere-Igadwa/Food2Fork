@@ -1,18 +1,32 @@
+import dependencies.AnnotationProcessing
+import dependencies.Accompanist
+import dependencies.InstrumentationTest
+import dependencies.Jetbrains
+import dependencies.Square
+import dependencies.UnitTest
+import dependencies.Versions
+import dependencies.AndroidX
+import dependencies.Google
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android' version '2.41' apply false
+
 }
 
 android {
     namespace 'design.propia.food2fork'
-    compileSdk 32
+    compileSdk Versions.compileSdk
 
     defaultConfig {
         applicationId "design.propia.food2fork"
-        minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        minSdk Versions.minSdk
+        targetSdk Versions.compileSdk
+        versionCode  Versions.versionCode
+        versionName Versions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -31,13 +45,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = Versions.jvmTarget
     }
     buildFeatures {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.1.1'
+        kotlinCompilerExtensionVersion Versions.kotlin
     }
     packagingOptions {
         resources {
@@ -48,9 +62,9 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation AndroidX.core_ktx
+    implementation AndroidX.runtime_lifecycle
+    implementation AndroidX.compose_activity
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
     implementation 'androidx.compose.material:material:1.1.1'
@@ -60,4 +74,52 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+
+
+
+    implementation AndroidX.core_ktx
+    implementation AndroidX.app_compat
+    implementation AndroidX.constraint_layout
+    implementation AndroidX.ui_tooling
+    implementation AndroidX.nav_fragment_ktx // will remove later
+    implementation AndroidX.nav_ui_ktx // will remove later
+    implementation AndroidX.compose_ui
+    implementation AndroidX.compose_foundation
+    implementation AndroidX.compose_material
+    implementation AndroidX.compose_icons_core
+    implementation AndroidX.compose_icons_extended
+    implementation AndroidX.constraint_compose
+    implementation AndroidX.navigation_compose
+    implementation AndroidX.compose_activity
+    implementation AndroidX.navigation_hilt
+    implementation AndroidX.room_runtime
+    implementation AndroidX.room_ktx
+    implementation AndroidX.datastore
+    implementation AndroidX.hilt_lifecycle_viewmodel
+
+    implementation Google.material
+    implementation Google.hilt_android
+
+    implementation Accompanist.coil
+
+    implementation Jetbrains.kotlin_stdlib
+
+    implementation Square.retrofit
+    implementation Square.retrofit_gson
+    implementation Square.okHttp
+    implementation Square.leak_canary
+
+    kapt AnnotationProcessing.hilt_compiler
+    kapt AnnotationProcessing.room_compiler
+
+    // TESTING
+    testImplementation UnitTest.jupiter_api
+    testRuntimeOnly UnitTest.jupiter_engine
+
+    // Mock web server
+    testImplementation UnitTest.mock_web_server
+//    testImplementation UnitTest.okHttp // include this if you get issues
+
+    // compose testing
+    implementation InstrumentationTest.compose_ui
 }
