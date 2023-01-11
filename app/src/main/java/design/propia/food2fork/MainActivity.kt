@@ -10,7 +10,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import design.propia.food2fork.ui.theme.Food2ForkTheme
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import design.propia.food2fork.presentation.navigation.Screen
+import design.propia.food2fork.presentation.ui.Food2ForkTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +25,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+
+
+
                     Greeting("Android")
                 }
             }
@@ -40,4 +46,10 @@ fun DefaultPreview() {
     Food2ForkTheme {
         Greeting("Android")
     }
+}
+
+@Composable
+fun AppNav() {
+    val navController = rememberNavController()
+    NavHost(navController =navController , startDestination =Screen.RecipeList , builder = )
 }

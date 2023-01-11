@@ -1,4 +1,4 @@
-package design.propia.food2fork.ui.theme
+package design.propia.food2fork.presentation.ui
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
