@@ -1,5 +1,6 @@
 package design.propia.food2fork.feature_dictionary.data.remote.dto
 
+import design.propia.food2fork.feature_dictionary.data.local.entity.WordInfoEntity
 import design.propia.food2fork.feature_dictionary.domain.models.WordInfo
 
 data class WordInfoDto(
@@ -19,5 +20,15 @@ data class WordInfoDto(
             sourceUrls=this.sourceUrls,
             word=this.word
             )
+    }
+    fun toWordInfoEntity(): WordInfoEntity {
+        return WordInfoEntity(
+            license = this.license,
+            meanings=this.meanings.map { it.toMeaning() },
+            phonetic=this.phonetic,
+            phonetics=this.phonetics.map { it.toPhonetic() },
+            sourceUrls=this.sourceUrls,
+            word=this.word
+        )
     }
 }
